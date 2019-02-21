@@ -48,7 +48,6 @@ class BaseNetworkModule(private val baseUrl: String) {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
 
-
         return Retrofit.Builder()
             .baseUrl(this.baseUrl)
             .client(okHttpClient)

@@ -1,12 +1,10 @@
 package com.theapache64.twinkill.data.remote.base
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
  * Common base API response
  */
-@JsonClass(generateAdapter = true)
 open class BaseApiResponse<T>(
     @Json(name = "error") val error: Boolean,
     @Json(name = "message") val message: String,
