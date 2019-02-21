@@ -14,7 +14,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 /**
- * Dagger
+ * Basic network module for dagger
  */
 @Module(includes = [MoshiModule::class])
 class BaseNetworkModule(private val baseUrl: String) {

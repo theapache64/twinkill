@@ -5,6 +5,9 @@ import com.theapache64.twinkill.utils.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 
+/**
+ * Base module for ViewModel module with ViewModelFactory
+ */
 @Module
 abstract class BaseViewModelModule {
     @Binds
