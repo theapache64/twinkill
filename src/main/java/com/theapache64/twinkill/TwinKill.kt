@@ -9,7 +9,7 @@ import okhttp3.Interceptor
 /**
  *  To control your app deps easily
  */
-class Orchid private constructor(
+class TwinKill private constructor(
     val interceptors: List<Interceptor>
 ) {
 
@@ -17,8 +17,8 @@ class Orchid private constructor(
 
         private val okHttpInterceptors = mutableListOf<Interceptor>()
 
-        fun build(): Orchid {
-            return Orchid(okHttpInterceptors)
+        fun build(): TwinKill {
+            return TwinKill(okHttpInterceptors)
         }
 
         /**
@@ -58,9 +58,9 @@ class Orchid private constructor(
 
     companion object {
 
-        lateinit var INSTANCE: Orchid
+        lateinit var INSTANCE: TwinKill
 
-        fun init(orchid: Orchid) {
+        fun init(orchid: TwinKill) {
             INSTANCE = orchid
         }
 

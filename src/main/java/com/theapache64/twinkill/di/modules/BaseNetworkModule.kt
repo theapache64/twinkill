@@ -1,6 +1,7 @@
 package com.theapache64.twinkill.di.modules
 
-import com.theapache64.twinkill.Orchid
+import com.squareup.moshi.Moshi
+import com.theapache64.twinkill.TwinKill
 import com.theapache64.twinkill.utils.retrofit.adapters.livedataadapter.LiveDataCallAdapterFactory
 import com.theapache64.twinkill.utils.retrofit.adapters.resourceadapter.ResourceCallAdapterFactory
 import dagger.Module
@@ -9,13 +10,13 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 /**
  * Dagger
  */
-@Module
+@Module(includes = [MoshiModule::class])
 class BaseNetworkModule(private val baseUrl: String) {
 
     // Interceptor
@@ -36,7 +37,7 @@ class BaseNetworkModule(private val baseUrl: String) {
         builder.addInterceptor(interceptor)
 
         // adding other interceptors
-        Orchid.INSTANCE.interceptors.forEach { builder.addInterceptor(it) }
+        TwinKill.INSTANCE.interceptors.forEach { builder.addInterceptor(it) }
 
         return builder
             .build()
@@ -45,11 +46,13 @@ class BaseNetworkModule(private val baseUrl: String) {
     // Retrofit
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+
+
         return Retrofit.Builder()
             .baseUrl(this.baseUrl)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addCallAdapterFactory(ResourceCallAdapterFactory())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())

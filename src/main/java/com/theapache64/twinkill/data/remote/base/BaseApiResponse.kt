@@ -1,12 +1,14 @@
 package com.theapache64.twinkill.data.remote.base
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * Common base API response
  */
+@JsonClass(generateAdapter = true)
 open class BaseApiResponse<T>(
-    @SerializedName("error") val error: Boolean,
-    @SerializedName("message") val message: String,
-    @SerializedName("data") val data: T
+    @Json(name = "error") val error: Boolean,
+    @Json(name = "message") val message: String,
+    @Json(name = "data") val data: T
 )
