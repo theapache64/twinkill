@@ -19,6 +19,7 @@ import javax.inject.Singleton
 @Module(includes = [MoshiModule::class])
 class BaseNetworkModule(private val baseUrl: String) {
 
+
     // Interceptor
     @Singleton
     @Provides
