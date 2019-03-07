@@ -20,6 +20,7 @@ import javax.inject.Singleton
 class BaseNetworkModule(private val baseUrl: String) {
 
 
+
     // Interceptor
     @Singleton
     @Provides
