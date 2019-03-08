@@ -14,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec
  */
 object DarkKnight {
 
-    private val ALGORITHM = "AES/GCM/NoPadding"
+    private val ALGORITHM = "AES"
 
     private val SALT = byteArrayOf(
         't'.toByte(),
