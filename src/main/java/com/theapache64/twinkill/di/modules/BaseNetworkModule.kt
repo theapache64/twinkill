@@ -20,7 +20,6 @@ import javax.inject.Singleton
 class BaseNetworkModule(private val baseUrl: String) {
 
 
-
     // Interceptor
     @Singleton
     @Provides
@@ -50,12 +49,14 @@ class BaseNetworkModule(private val baseUrl: String) {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
 
+        val isNeedDeepCheck = TwinKill.INSTANCE.isNeedDeepCheckOnNetworkResponse
+
         return Retrofit.Builder()
             .baseUrl(this.baseUrl)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addCallAdapterFactory(ResourceCallAdapterFactory())
+            .addCallAdapterFactory(ResourceCallAdapterFactory(isNeedDeepCheck))
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
     }

@@ -10,15 +10,17 @@ import okhttp3.Interceptor
  *  To control your app deps easily
  */
 class TwinKill private constructor(
-    val interceptors: List<Interceptor>
+    val interceptors: List<Interceptor>,
+    val isNeedDeepCheckOnNetworkResponse: Boolean
 ) {
 
     class Builder {
 
         private val okHttpInterceptors = mutableListOf<Interceptor>()
+        private var isNeedDeepCheckOnNetworkResponse = false
 
         fun build(): TwinKill {
-            return TwinKill(okHttpInterceptors)
+            return TwinKill(okHttpInterceptors, isNeedDeepCheckOnNetworkResponse)
         }
 
         /**
@@ -34,6 +36,14 @@ class TwinKill private constructor(
          */
         fun setDefaultFont(font: Font): Builder {
             setDefaultFont(font.path)
+            return this
+        }
+
+        /**
+         * When set to true, Resource adapter will check with the BaseApiResponse adapter's error flag.
+         */
+        fun setNeedDeepCheckOnNetworkResponse(isNeedDeepCheckOnNetworkResponse: Boolean): Builder {
+            this.isNeedDeepCheckOnNetworkResponse = isNeedDeepCheckOnNetworkResponse
             return this
         }
 

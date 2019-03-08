@@ -1,5 +1,6 @@
 package com.theapache64.twinkill.utils
 
+import com.theapache64.twinkill.data.remote.base.BaseApiResponse
 import retrofit2.Response
 
 class Resource<T> private constructor(
@@ -37,14 +38,32 @@ class Resource<T> private constructor(
             return Resource(Status.ERROR, null, throwable.message ?: "unknown error")
         }
 
-        fun <T> create(response: Response<T>): Resource<T> {
+        fun <T> create(response: Response<T>, isNeedDeepCheck: Boolean = false): Resource<T> {
 
             return if (response.isSuccessful) {
                 val body = response.body()
                 if (body == null || response.code() == 204) {
                     Resource<T>(Status.SUCCESS, null, "No content")
                 } else {
-                    Resource<T>(Status.SUCCESS, body, "success")
+                    if (isNeedDeepCheck) {
+                        if (body is BaseApiResponse<*>) {
+                            val baseApiResponse = body as BaseApiResponse<*>
+                            if (baseApiResponse.error) {
+                                Resource<T>(Status.ERROR, body, baseApiResponse.message)
+                            } else {
+                                Resource<T>(Status.SUCCESS, body, "success")
+                            }
+                        } else {
+                            Resource<T>(
+                                Status.ERROR,
+                                body,
+                                "Body doesn't follow BaseApiResponse standard. DeepCheck not possible"
+                            )
+                        }
+
+                    } else {
+                        Resource(Status.SUCCESS, body, "success")
+                    }
                 }
             } else {
                 val msg = response.errorBody()?.string()

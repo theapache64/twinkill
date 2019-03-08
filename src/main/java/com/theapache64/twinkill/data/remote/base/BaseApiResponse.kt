@@ -8,5 +8,5 @@ import com.squareup.moshi.Json
 open class BaseApiResponse<T>(
     @Json(name = "error") val error: Boolean,
     @Json(name = "message") val message: String,
-    @Json(name = "data") val data: T
+    @Json(name = "data") val data: T? = null
 )

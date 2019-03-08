@@ -24,7 +24,7 @@ import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
-class ResourceCallAdapterFactory : Factory() {
+class ResourceCallAdapterFactory(private val isNeedDeepCheck: Boolean = false) : Factory() {
     override fun get(
         returnType: Type,
         annotations: Array<Annotation>,
@@ -42,6 +42,6 @@ class ResourceCallAdapterFactory : Factory() {
             throw IllegalArgumentException("resource must be parameterized")
         }
         val bodyType = Factory.getParameterUpperBound(0, observableType)
-        return ResourceCallAdapter<Any>(bodyType)
+        return ResourceCallAdapter<Any>(bodyType, isNeedDeepCheck)
     }
 }
