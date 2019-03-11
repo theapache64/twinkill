@@ -5,7 +5,7 @@ Utility package wrapped around android JetPack components
 ### Installation
 
 ```groovy
-implementation 'com.theapache64.twinkill:twinkill:2.1.2-alpha03'
+implementation 'com.theapache64.twinkill:twinkill:2.1.2-alpha04'
 ```
 
 ### Usage
@@ -58,6 +58,8 @@ implementation 'com.theapache64.twinkill:twinkill:2.1.2-alpha03'
 Components that are dependant on another components
     
  - OkHttpInterceptors
+    
+    - CurlInterceptor
       
         `TwinKill` comes with a `CurlInterceptor` for `OkHttp`. By default, it's not attached.
         You can add the interceptor and many other using the `TwinKill` builder.
@@ -68,6 +70,10 @@ Components that are dependant on another components
                         .addOkHttpInterceptor(CurlInterceptor())
                         .build()
         ```
+    
+    - AuthorizationInterceptor
+    
+        - coming soon
     
     
  - Dagger Modules
