@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">twinkill</string>
+    <string name="action_yes">YES</string>
 </resources>
