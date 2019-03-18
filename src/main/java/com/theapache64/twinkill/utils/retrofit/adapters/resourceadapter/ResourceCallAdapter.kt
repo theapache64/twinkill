@@ -36,6 +36,7 @@ class ResourceCallAdapter<R>(private val responseType: Type, private val isNeedD
                         }
 
                         override fun onFailure(call: Call<R>, throwable: Throwable) {
+                            throwable.printStackTrace()
                             postValue(Resource.create(throwable))
                         }
                     })

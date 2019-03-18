@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">twinkill</string>
     <string name="action_yes">YES</string>
+    <string name="action_retry">RETRY</string>
 </resources>
