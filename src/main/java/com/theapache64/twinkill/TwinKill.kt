@@ -60,6 +60,10 @@ class TwinKill private constructor(
             return this
         }
 
+        /**
+         * Sets primary color of the app
+         */
+
         private fun setDefaultFont(path: String) {
 
             // Initializing  ViewPump
