@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sessions">
+        <item>@string/value_session_forenoon</item>
+        <item>@string/value_session_afternoon</item>
+    </string-array>
+    <string name="value_session_forenoon">Forenoon</string>
+    <string name="value_session_afternoon">Afternoon</string>
+</resources>
