@@ -5,11 +5,11 @@ apply plugin: 'kotlin-kapt'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'twinkill'
+    bintrayName = 'twinkill_core'
 
     publishedGroupId = 'com.theapache64.twinkill'
-    libraryName = 'twinkill'
-    artifact = 'twinkill'
+    libraryName = 'core'
+    artifact = 'core'
 
     libraryDescription = 'A simple util package, mainly based on android Jetpack components. '
 

@@ -1,4 +1,4 @@
-package com.theah64.qpool.utils
+package com.theapache64.twinkill.ui.widgets
 
 import android.content.Context
 import android.util.AttributeSet
