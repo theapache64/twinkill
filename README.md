@@ -5,7 +5,11 @@ Utility package wrapped around android JetPack components
 ### Installation
 
 ```groovy
-implementation 'com.theapache64.twinkill:twinkill:2.1.2-rc1'
+// Core Module
+implementation 'com.theapache64.twinkill:core:latest.version'
+
+// Fonts Module
+implementation 'com.theapache64.twinkill:google-fonts:latest.version'
 ```
 
 ### Usage
@@ -14,24 +18,21 @@ implementation 'com.theapache64.twinkill:twinkill:2.1.2-rc1'
  
  Init `TwinKill` in your `Application` class
  
- ```kotlin
+```kotlin
  class App : Application() {
      override fun onCreate() {
          super.onCreate()
          
          TwinKill.init(
              TwinKill.builder()
-                 .setDefaultFont(Font.GoogleSansRegular)
+                 .setDefaultFont(GoogleFonts.GoogleSansRegular)
                  .build()
          )
      }
  }
 ```
 
-
-
 ### Components
-
    
  - Fonts
  
@@ -40,8 +41,8 @@ implementation 'com.theapache64.twinkill:twinkill:2.1.2-rc1'
     
     ```kotlin
        TwinKill.builder()
-                    .setDefaultFont(Font.GoogleSansRegular)
-                    .build() 
+                .setDefaultFont(Font.GoogleSansRegular)
+                .build() 
     ```
  - Encryption
    
@@ -64,11 +65,10 @@ Components that are dependant on another components
         `TwinKill` comes with a `CurlInterceptor` for `OkHttp`. By default, it's not attached.
         You can add the interceptor and many other using the `TwinKill` builder.
         
-        
         ```kotin
         TwinKill.builder()
-                        .addOkHttpInterceptor(CurlInterceptor())
-                        .build()
+                .addOkHttpInterceptor(CurlInterceptor())
+                .build()
         ```
     
     - AuthorizationInterceptor
@@ -84,7 +84,7 @@ Components that are dependant on another components
         2. OkHttpClient
         3. Retrofit    
        
-        - coming soon
+        - more coming soon
         
         
  - Room
@@ -96,9 +96,5 @@ Components that are dependant on another components
  
  
 ### Features
-
- - coming soon
-
-### Usage
 
  - coming soon

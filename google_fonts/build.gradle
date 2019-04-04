@@ -8,8 +8,8 @@ ext {
     bintrayName = 'twinkill_google_fonts'
 
     publishedGroupId = 'com.theapache64.twinkill'
-    libraryName = 'twinkill_google_fonts'
-    artifact = 'twinkill_google_fonts'
+    libraryName = 'google_fonts'
+    artifact = 'google_fonts'
 
     libraryDescription = 'Google fonts for TwinKill'
 
@@ -58,7 +58,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    compile project(path: ':twinkill-core')
+    implementation project(path: ':core')
 }
 repositories {
     mavenCentral()
