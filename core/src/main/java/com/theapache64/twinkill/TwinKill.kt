@@ -1,7 +1,7 @@
 package com.theapache64.twinkill
 
+import com.theapache64.twinkill.network.utils.retrofit.interceptors.AuthorizationInterceptor
 import com.theapache64.twinkill.utils.Font
-import com.theapache64.twinkill.utils.retrofit.interceptors.AuthorizationInterceptor
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump

@@ -73,12 +73,6 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:$room_version"
 
-    // Retrofit
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    api 'com.squareup.okhttp3:logging-interceptor:3.14.0'
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
