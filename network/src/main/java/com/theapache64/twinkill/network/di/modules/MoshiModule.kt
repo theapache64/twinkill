@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.di.modules
+package com.theapache64.twinkill.network.di.modules
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

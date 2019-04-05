@@ -1,6 +1,5 @@
 package com.theapache64.twinkill
 
-import com.theapache64.twinkill.network.utils.retrofit.interceptors.AuthorizationInterceptor
 import com.theapache64.twinkill.utils.Font
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
@@ -14,19 +13,6 @@ class TwinKill private constructor(
     val interceptors: List<Interceptor>,
     val isNeedDeepCheckOnNetworkResponse: Boolean
 ) {
-    fun setAuthInterceptorApiKey(apiKey: String) {
-        var isKeySet = false
-        for (interceptor in interceptors) {
-            if (interceptor is AuthorizationInterceptor) {
-                interceptor.apiKey = apiKey
-                isKeySet = true
-                break
-            }
-        }
-
-        require(isKeySet) { "Unable to find an AuthorizationInterceptor" }
-    }
-
     class Builder {
 
         private val okHttpInterceptors = mutableListOf<Interceptor>()

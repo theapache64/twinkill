@@ -81,11 +81,13 @@ dependencies {
     implementation 'io.github.inflationx:calligraphy3:3.1.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'
 
-    // Moshi
-    implementation 'com.squareup.moshi:moshi-kotlin:1.8.0'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.14.0'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
 }
 
-
+/*
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'*/

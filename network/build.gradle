@@ -1,22 +1,22 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'twinkill_google_fonts'
+    bintrayName = 'twinkill_network'
 
     publishedGroupId = 'com.theapache64.twinkill'
-    libraryName = 'google_fonts'
-    artifact = 'google_fonts'
+    libraryName = 'network'
+    artifact = 'network'
 
-    libraryDescription = 'Google fonts for TwinKill'
+    libraryDescription = 'Network module for TwinKill'
 
     siteUrl = 'https://github.com/theapache64/twinkill'
     gitUrl = 'https://github.com/theapache64/twinkill.git'
 
-    libraryVersion = twinkill_google_fonts_version_name
+    libraryVersion = twinkill_network_version_name
 
     developerId = 'theapache64'
     developerName = 'theapache64'
@@ -27,15 +27,14 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-
 android {
     compileSdkVersion compile_sdk_version
 
     defaultConfig {
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
-        versionCode twinkill_google_fonts_version_code
-        versionName "$twinkill_google_fonts_version_name"
+        versionCode twinkill_network_version_code
+        versionName twinkill_network_version_name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -59,12 +58,24 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_kotlin_version"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_moshi_converter"
+
     implementation project(path: ':core')
 }
 repositories {
     mavenCentral()
 }
 
-/*
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'*/
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
