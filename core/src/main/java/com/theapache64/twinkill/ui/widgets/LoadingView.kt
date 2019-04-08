@@ -3,6 +3,7 @@ package com.theapache64.twinkill.ui.widgets
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.StringRes
 import com.theapache64.twinkill.databinding.LoadingViewBinding
@@ -27,6 +28,7 @@ class LoadingView(context: Context, attrs: AttributeSet?) : FrameLayout(context,
      * To show progress bar with given message
      */
     fun showLoading(message: String) {
+        visibility = View.VISIBLE
         binding.isLoading = true
         binding.isError = false
         binding.message = message
@@ -37,12 +39,14 @@ class LoadingView(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     }
 
     fun hideLoading() {
+        visibility = View.GONE
         binding.isLoading = false
         binding.isError = false
         binding.message = null
     }
 
     fun showError(message: String) {
+        visibility = View.VISIBLE
         binding.isError = true
         binding.isLoading = false
         binding.message = message

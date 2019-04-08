@@ -14,6 +14,12 @@ object DateUtils {
      */
     private val FORMAT_DAY_MONTH_DATE_YEAR by lazy { SimpleDateFormat("EEEE MMMM dd, yyyy", Locale.US) }
 
+
+    /**
+     * Sample : 31-12-2019
+     */
+    private val FORMAT_DD_MM_YYYY by lazy { SimpleDateFormat("dd-MM-yyyy", Locale.US) }
+
     /**
      * Returns date in format `EEEE MMMM dd, yyyy`, ie, eg: Tuesday July 24, 2012
      * Returns null if the passed date is null
@@ -25,4 +31,10 @@ object DateUtils {
         }
         return null
     }
+
+    @JvmStatic
+    fun toDDMMYYY(date: Date): String {
+        return FORMAT_DD_MM_YYYY.format(date)
+    }
+
 }
