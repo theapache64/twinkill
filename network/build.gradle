@@ -72,10 +72,12 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_moshi_converter"
 
     implementation project(path: ':core')
+    implementation project(path: ':logger')
 }
 repositories {
     mavenCentral()
 }
 
+/*
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'*/

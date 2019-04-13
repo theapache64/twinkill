@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.utils.extensions
+package com.theapache64.twinkill.logger
 
 import android.util.Log
 

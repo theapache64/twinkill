@@ -16,7 +16,7 @@
 
 package com.theapache64.twinkill.network.utils
 
-import com.theapache64.twinkill.utils.extensions.warning
+import com.theapache64.twinkill.logger.warning
 import retrofit2.Response
 import java.util.regex.Pattern
 
