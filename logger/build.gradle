@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/theapache64/twinkill'
     gitUrl = 'https://github.com/theapache64/twinkill.git'
 
-    libraryVersion = twinkill_logger_version_name
+    libraryVersion = twinkill_version_name
 
     developerId = 'theapache64'
     developerName = 'theapache64'
@@ -31,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
-        versionCode twinkill_logger_version_code
-        versionName twinkill_logger_version_name
+        versionCode twinkill_version_code
+        versionName twinkill_version_name
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.data.local.typeconverters
+package com.theapache64.twinkill.room.converters
 
 import androidx.room.TypeConverter
 import java.util.*
