@@ -1,7 +1,8 @@
 package com.theapache64.twinkill.network.utils.retrofit.convertors
 
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -13,7 +14,7 @@ import java.lang.reflect.Type
 class ToStringConverterFactory : Converter.Factory() {
 
     companion object {
-        private val MEDIA_TYPE = MediaType.parse("text/plain")
+        private val MEDIA_TYPE = "text/plain".toMediaTypeOrNull()
     }
 
 
@@ -35,7 +36,7 @@ class ToStringConverterFactory : Converter.Factory() {
     ): Converter<*, RequestBody>? {
 
         return if (String::class.java == type) {
-            Converter<String, RequestBody> { value -> RequestBody.create(MEDIA_TYPE, value) }
+            Converter<String, RequestBody> { value -> value.toRequestBody(MEDIA_TYPE) }
         } else null
     }
 }

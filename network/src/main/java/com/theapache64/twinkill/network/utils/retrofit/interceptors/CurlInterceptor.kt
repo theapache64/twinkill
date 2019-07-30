@@ -35,22 +35,22 @@ class CurlInterceptor : Interceptor {
 		curlCommandBuilder!!.append("curl ")
 		curlCommandBuilder!!.append("-X ")
 		// add method
-		curlCommandBuilder!!.append(request.method().toUpperCase()).append(" ")
+		curlCommandBuilder!!.append(request.method.toUpperCase()).append(" ")
 		// adding headers
-		for (headerName in request.headers().names()) {
-			addHeader(headerName, request.headers().get(headerName))
+		for (headerName in request.headers.names()) {
+			addHeader(headerName, request.headers.get(headerName))
 		}
 
 		// adding request body
-		val requestBody = request.body()
-		if (request.body() != null) {
+		val requestBody = request.body
+		if (request.body != null) {
 			val buffer = Buffer()
 			assert(requestBody != null)
 			requestBody!!.writeTo(buffer)
 			val charset: Charset?
 			val contentType = requestBody.contentType()
 			if (contentType != null) {
-				addHeader("Content-Type", request.body()!!.contentType()!!.toString())
+				addHeader("Content-Type", request.body!!.contentType()!!.toString())
 				charset = contentType.charset(UTF8)
 				assert(charset != null)
 				curlCommandBuilder!!.append(" -d '").append(buffer.readString(charset!!))
@@ -59,10 +59,10 @@ class CurlInterceptor : Interceptor {
 		}
 
 		// add request URL
-		curlCommandBuilder!!.append(" \"").append(request.url().toString()).append("\"")
+		curlCommandBuilder!!.append(" \"").append(request.url.toString()).append("\"")
 		curlCommandBuilder!!.append(" -L | jq '.'")
 
-        CurlPrinter.print(tag, request.url().toString(), curlCommandBuilder!!.toString())
+        CurlPrinter.print(tag, request.url.toString(), curlCommandBuilder!!.toString())
 		return chain.proceed(request)
 	}
 
