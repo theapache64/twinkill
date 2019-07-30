@@ -5,7 +5,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.load.engine.Resource
 import com.theapache64.twinkill.databinding.LoadingViewBinding
 
 class LoadingView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
@@ -50,6 +53,10 @@ class LoadingView(context: Context, attrs: AttributeSet?) : FrameLayout(context,
         binding.isError = true
         binding.isLoading = false
         binding.message = message
+    }
+    
+    fun setTextColor(@ColorRes color: Int){
+        binding.tvMessage.setTextColor(ContextCompat.getColor(context, color))
     }
 
     interface RetryCallback {
