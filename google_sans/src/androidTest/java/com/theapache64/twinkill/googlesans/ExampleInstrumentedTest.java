@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.googlefonts;
+package com.theapache64.twinkill.googlesans;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

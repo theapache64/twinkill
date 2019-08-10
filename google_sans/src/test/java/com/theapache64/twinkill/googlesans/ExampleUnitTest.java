@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.googlefonts;
+package com.theapache64.twinkill.googlesans;
 
 import org.junit.Test;
 
