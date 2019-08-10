@@ -3,7 +3,7 @@ package com.theapache64.twinkill.network.utils
 import com.theapache64.twinkill.network.data.remote.base.BaseApiResponse
 import retrofit2.Response
 
-class Resource<T> private constructor(
+class Resource<out T> private constructor(
     val status: Status, val data: T?,
     val message: String?
 ) {
