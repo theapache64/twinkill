@@ -7,9 +7,6 @@ Utility package wrapped around android JetPack components
 ```groovy
 // Core Module
 implementation 'com.theapache64.twinkill:core:latest.version'
-
-// Fonts Module
-implementation 'com.theapache64.twinkill:google-fonts:latest.version'
 ```
 
 ### Usage
@@ -86,14 +83,6 @@ Components that are dependant on another components
        
         - more coming soon
         
-        
- - Room
- 
-    - DateConverter
-     
-        Converter for Room database, to parse `Long` from `Date` and vice-versa
-   
- 
  
 ### Features
 

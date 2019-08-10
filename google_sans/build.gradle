@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'twinkill_google_fonts'
+    bintrayName = 'twinkill_google_sans'
 
     publishedGroupId = 'com.theapache64.twinkill'
-    libraryName = 'google_fonts'
-    artifact = 'google_fonts'
+    libraryName = 'google_sans'
+    artifact = 'google_sans'
 
-    libraryDescription = 'Google fonts for TwinKill'
+    libraryDescription = 'Google sans fonts for TwinKill'
 
     siteUrl = 'https://github.com/theapache64/twinkill'
     gitUrl = 'https://github.com/theapache64/twinkill.git'
