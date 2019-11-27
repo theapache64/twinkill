@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 /**
  * Normally LiveData can be fired at many times, but this special live data wrapper only fires once.
  */
-class SingleLiveEvent<T> : MutableLiveData<T>() {
+open class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     private val pending = AtomicBoolean(false)
 
@@ -28,10 +28,17 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         })
     }
 
+
     @MainThread
     override fun setValue(t: T?) {
         pending.set(true)
         super.setValue(t)
+    }
+
+
+    override fun postValue(value: T) {
+        pending.set(true)
+        super.postValue(value)
     }
 
     /**

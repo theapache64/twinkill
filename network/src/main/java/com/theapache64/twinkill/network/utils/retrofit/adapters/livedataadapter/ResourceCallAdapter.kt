@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.network.utils.retrofit.adapters.resourceadapter
+package com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter
 
 import androidx.lifecycle.LiveData
 import com.theapache64.twinkill.network.utils.Resource

@@ -2,8 +2,8 @@ package com.theapache64.twinkill.network.di.modules
 
 import com.squareup.moshi.Moshi
 import com.theapache64.twinkill.TwinKill
-import com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter.LiveDataCallAdapterFactory
-import com.theapache64.twinkill.network.utils.retrofit.adapters.resourceadapter.ResourceCallAdapterFactory
+import com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter.ResourceCallAdapterFactory
+import com.theapache64.twinkill.network.utils.retrofit.adapters.singlelivedataadapter.SingleResourceCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -23,21 +23,28 @@ class BaseNetworkModule(private val baseUrl: String) {
     // Interceptor
     @Singleton
     @Provides
-    fun provideInterceptor(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        return httpLoggingInterceptor.apply {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    fun provideInterceptor(): HttpLoggingInterceptor? {
+        return if (TwinKill.INSTANCE.isHttpLoggingInterceptorEnabled) {
+            val httpLoggingInterceptor = HttpLoggingInterceptor()
+            httpLoggingInterceptor.apply {
+                httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            }
+        } else {
+            null
         }
+
     }
 
     // Client
     @Singleton
     @Provides
-    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor?): OkHttpClient {
         val builder = OkHttpClient.Builder()
 
-        // adding logging interceptor
-        builder.addInterceptor(interceptor)
+        if (loggingInterceptor != null) {
+            // adding logging interceptor
+            builder.addInterceptor(loggingInterceptor)
+        }
 
         // adding other interceptors
         TwinKill.INSTANCE.interceptors.forEach { builder.addInterceptor(it) }
@@ -58,8 +65,8 @@ class BaseNetworkModule(private val baseUrl: String) {
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(SingleResourceCallAdapterFactory(isNeedDeepCheck))
             .addCallAdapterFactory(ResourceCallAdapterFactory(isNeedDeepCheck))
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
     }
 

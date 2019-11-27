@@ -11,15 +11,21 @@ import okhttp3.Interceptor
  */
 class TwinKill private constructor(
     val interceptors: List<Interceptor>,
-    val isNeedDeepCheckOnNetworkResponse: Boolean
+    val isNeedDeepCheckOnNetworkResponse: Boolean,
+    val isHttpLoggingInterceptorEnabled: Boolean
 ) {
     class Builder {
 
+        private var isHttpLoggingInterceptorEnabled: Boolean = false
         private val okHttpInterceptors = mutableListOf<Interceptor>()
         private var isNeedDeepCheckOnNetworkResponse = false
 
         fun build(): TwinKill {
-            return TwinKill(okHttpInterceptors, isNeedDeepCheckOnNetworkResponse)
+            return TwinKill(
+                okHttpInterceptors,
+                isNeedDeepCheckOnNetworkResponse,
+                isHttpLoggingInterceptorEnabled
+            )
         }
 
         /**
@@ -66,6 +72,11 @@ class TwinKill private constructor(
                     )
                     .build()
             )
+        }
+
+        fun enableHttpLoggingInterceptor(): Builder {
+            this.isHttpLoggingInterceptorEnabled = true
+            return this;
         }
     }
 
