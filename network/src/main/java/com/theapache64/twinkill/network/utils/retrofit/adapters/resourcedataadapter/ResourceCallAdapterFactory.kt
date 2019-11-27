@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter
+package com.theapache64.twinkill.network.utils.retrofit.adapters.resourcedataadapter
 
 import androidx.lifecycle.LiveData
 import com.theapache64.twinkill.network.utils.Resource

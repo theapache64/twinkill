@@ -2,8 +2,8 @@ package com.theapache64.twinkill.network.di.modules
 
 import com.squareup.moshi.Moshi
 import com.theapache64.twinkill.TwinKill
-import com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter.ResourceCallAdapterFactory
-import com.theapache64.twinkill.network.utils.retrofit.adapters.singlelivedataadapter.SingleResourceCallAdapterFactory
+import com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter.LiveDataCallAdapterFactory
+import com.theapache64.twinkill.network.utils.retrofit.adapters.resourcedataadapter.ResourceCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -60,13 +60,15 @@ class BaseNetworkModule(private val baseUrl: String) {
 
         val isNeedDeepCheck = TwinKill.INSTANCE.isNeedDeepCheckOnNetworkResponse
 
-        return Retrofit.Builder()
+        val retrofitBuilder = Retrofit.Builder()
             .baseUrl(this.baseUrl)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addCallAdapterFactory(SingleResourceCallAdapterFactory(isNeedDeepCheck))
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addCallAdapterFactory(ResourceCallAdapterFactory(isNeedDeepCheck))
+
+        return retrofitBuilder
             .build()
     }
 
