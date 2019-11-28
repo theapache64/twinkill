@@ -10,7 +10,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.theapache64.twinkill.R
 
 
-class CustomSwipeRefreshLayout(context: Context, attrs: AttributeSet?) : SwipeRefreshLayout(context, attrs) {
+class CustomSwipeRefreshLayout(context: Context, attrs: AttributeSet?) :
+    SwipeRefreshLayout(context, attrs) {
 
     init {
 

@@ -13,7 +13,6 @@ import retrofit2.CallAdapter
 class TwinKill private constructor(
     val interceptors: List<Interceptor>,
     val callAdapterFactories: List<CallAdapter.Factory>,
-    val isNeedDeepCheckOnNetworkResponse: Boolean,
     val isHttpLoggingInterceptorEnabled: Boolean
 ) {
     class Builder {
@@ -21,13 +20,11 @@ class TwinKill private constructor(
         private var isHttpLoggingInterceptorEnabled: Boolean = false
         private val okHttpInterceptors = mutableListOf<Interceptor>()
         private val callAdapterFactories = mutableListOf<CallAdapter.Factory>()
-        private var isNeedDeepCheckOnNetworkResponse = false
 
         fun build(): TwinKill {
             return TwinKill(
                 okHttpInterceptors,
                 callAdapterFactories,
-                isNeedDeepCheckOnNetworkResponse,
                 isHttpLoggingInterceptorEnabled
             )
         }
@@ -53,14 +50,6 @@ class TwinKill private constructor(
          */
         fun setDefaultFont(font: Font): Builder {
             setDefaultFont(font.path)
-            return this
-        }
-
-        /**
-         * When set to true, Resource adapter will check with the BaseApiResponse adapter's error flag.
-         */
-        fun setNeedDeepCheckOnNetworkResponse(isNeedDeepCheckOnNetworkResponse: Boolean): Builder {
-            this.isNeedDeepCheckOnNetworkResponse = isNeedDeepCheckOnNetworkResponse
             return this
         }
 

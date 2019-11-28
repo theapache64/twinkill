@@ -57,8 +57,7 @@ class BaseNetworkModule(private val baseUrl: String) {
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        moshi: Moshi,
-        callAdapterFactories: Array<CallAdapter.Factory>
+        moshi: Moshi
     ): Retrofit {
 
 
@@ -67,26 +66,12 @@ class BaseNetworkModule(private val baseUrl: String) {
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
 
-        callAdapterFactories.forEach {
-            retrofitBuilder.addCallAdapterFactory(it)
-        }
-
         TwinKill.INSTANCE.callAdapterFactories.forEach {
             retrofitBuilder.addCallAdapterFactory(it)
         }
 
         return retrofitBuilder
             .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideCallAdapters(): Array<CallAdapter.Factory> {
-        val isNeedDeepCheck = TwinKill.INSTANCE.isNeedDeepCheckOnNetworkResponse
-
-        return arrayOf(
-            ResourceCallAdapterFactory(isNeedDeepCheck)
-        )
     }
 
 }
