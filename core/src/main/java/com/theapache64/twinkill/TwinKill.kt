@@ -5,12 +5,14 @@ import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
 import okhttp3.Interceptor
+import retrofit2.CallAdapter
 
 /**
  *  To control your app deps easily
  */
 class TwinKill private constructor(
     val interceptors: List<Interceptor>,
+    val callAdapterFactories: List<CallAdapter.Factory>,
     val isNeedDeepCheckOnNetworkResponse: Boolean,
     val isHttpLoggingInterceptorEnabled: Boolean
 ) {
@@ -18,11 +20,13 @@ class TwinKill private constructor(
 
         private var isHttpLoggingInterceptorEnabled: Boolean = false
         private val okHttpInterceptors = mutableListOf<Interceptor>()
+        private val callAdapterFactories = mutableListOf<CallAdapter.Factory>()
         private var isNeedDeepCheckOnNetworkResponse = false
 
         fun build(): TwinKill {
             return TwinKill(
                 okHttpInterceptors,
+                callAdapterFactories,
                 isNeedDeepCheckOnNetworkResponse,
                 isHttpLoggingInterceptorEnabled
             )
@@ -33,6 +37,14 @@ class TwinKill private constructor(
          */
         fun addOkHttpInterceptor(interceptor: Interceptor): Builder {
             this.okHttpInterceptors.add(interceptor)
+            return this
+        }
+
+        /**
+         * To add new retrofit call adapter to default NetworkModule
+         */
+        fun addCallAdapter(factory: CallAdapter.Factory): Builder {
+            this.callAdapterFactories.add(factory)
             return this
         }
 

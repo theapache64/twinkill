@@ -2,14 +2,13 @@ package com.theapache64.twinkill.network.di.modules
 
 import com.squareup.moshi.Moshi
 import com.theapache64.twinkill.TwinKill
-import com.theapache64.twinkill.network.utils.retrofit.adapters.livedataadapter.LiveDataCallAdapterFactory
 import com.theapache64.twinkill.network.utils.retrofit.adapters.resourcedataadapter.ResourceCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.CallAdapter
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -56,20 +55,38 @@ class BaseNetworkModule(private val baseUrl: String) {
     // Retrofit
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        moshi: Moshi,
+        callAdapterFactories: Array<CallAdapter.Factory>
+    ): Retrofit {
 
-        val isNeedDeepCheck = TwinKill.INSTANCE.isNeedDeepCheckOnNetworkResponse
 
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(this.baseUrl)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
-            .addCallAdapterFactory(ResourceCallAdapterFactory(isNeedDeepCheck))
+
+        callAdapterFactories.forEach {
+            retrofitBuilder.addCallAdapterFactory(it)
+        }
+
+        TwinKill.INSTANCE.callAdapterFactories.forEach {
+            retrofitBuilder.addCallAdapterFactory(it)
+        }
 
         return retrofitBuilder
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCallAdapters(): Array<CallAdapter.Factory> {
+        val isNeedDeepCheck = TwinKill.INSTANCE.isNeedDeepCheckOnNetworkResponse
+
+        return arrayOf(
+            ResourceCallAdapterFactory(isNeedDeepCheck)
+        )
     }
 
 }
