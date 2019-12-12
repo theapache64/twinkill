@@ -1,6 +1,9 @@
 package com.theapache64.twinkill.network.utils
 
+import com.squareup.moshi.*
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.theapache64.twinkill.network.data.remote.base.BaseApiResponse
+import org.json.JSONObject
 import retrofit2.Response
 
 class Resource<out T> private constructor(
@@ -99,14 +102,15 @@ class Resource<out T> private constructor(
                 }
             } else {
                 val msg = response.errorBody()?.string()
+
                 val errorMsg = if (msg.isNullOrEmpty()) {
                     response.message()
                 } else {
-                    msg
+                    // Return error string
+                    JSONObject(msg).getString("message")
                 }
                 error(errorMsg ?: "unknown error")
             }
         }
     }
 }
-

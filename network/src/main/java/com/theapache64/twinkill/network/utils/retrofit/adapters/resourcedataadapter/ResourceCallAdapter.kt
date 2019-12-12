@@ -29,7 +29,6 @@ class ResourceCallAdapter<R>(private val responseType: Type, private val isNeedD
                     // Firing loading resource
                     postValue(Resource.loading())
 
-
                     call.enqueue(object : Callback<R> {
                         override fun onResponse(call: Call<R>, response: Response<R>) {
                             postValue(Resource.create(response, isNeedDeepCheck))
