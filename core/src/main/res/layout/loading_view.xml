@@ -3,24 +3,6 @@
 
     <data>
 
-        <variable
-            name="isLoading"
-            type="Boolean" />
-
-        <variable
-            name="message"
-            type="String" />
-
-        <variable
-            name="isError"
-            type="Boolean" />
-
-        <import type="android.view.View" />
-
-        <variable
-            name="retryCallback"
-            type="com.theapache64.twinkill.ui.widgets.LoadingView.RetryCallback" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -36,7 +18,6 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_warning"
-            android:visibility="@{isError ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +30,6 @@
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,8 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="@{message}"
-            android:visibility="@{message!=null ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="@id/b_icons"
             app:layout_constraintStart_toStartOf="@id/b_icons"
             app:layout_constraintTop_toBottomOf="@id/b_icons"
@@ -82,9 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:onClick="@{()->retryCallback.onRetryClicked()}"
             android:text="@string/action_retry"
-            android:visibility="@{isError &amp;&amp; retryCallback!=null ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="@id/tv_message"
             app:layout_constraintStart_toStartOf="@id/tv_message"
             app:layout_constraintTop_toBottomOf="@id/tv_message" />
