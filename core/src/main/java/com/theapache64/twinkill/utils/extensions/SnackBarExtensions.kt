@@ -17,3 +17,19 @@ fun View.snackBar(message: String) {
 fun View.snackBar(@StringRes msgId: Int) {
     snackBar(context.getString(msgId))
 }
+
+/**
+ * To show long snack bar
+ * */
+fun View.snackBarLong(@StringRes msgId: Int) {
+    snackBarLong(context.getString(msgId))
+}
+
+/**
+ * To show long snack bar
+ */
+fun View.snackBarLong(message: String) {
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
+}
+
+
