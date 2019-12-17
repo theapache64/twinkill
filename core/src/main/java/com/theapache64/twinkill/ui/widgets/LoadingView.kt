@@ -20,6 +20,7 @@ class LoadingView(context: Context, attrs: AttributeSet?) : FrameLayout(context,
     init {
         val inflater = LayoutInflater.from(getContext())
         this.binding = LoadingViewBinding.inflate(inflater, this, true)
+        hideLoading()
     }
 
     /**
