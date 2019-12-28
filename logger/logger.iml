@@ -4,8 +4,8 @@
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":logger" />
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="3.6.0-beta05" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="3.6.0-beta05" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="3.6.0-rc01" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="3.6.0-rc01" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -32,7 +32,7 @@
         </compilerSettings>
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$MODULE_DIR$/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/11862c0db46b21910816d14e633524d3/jetified-kotlin-stdlib-jdk7-1.3.50.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/57397b764696eadf0c58a7a179b16189/jetified-kotlin-stdlib-1.3.50.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/1df3d8261ab130e6c1c8759752723bb5/jetified-kotlin-stdlib-common-1.3.50.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/d75aa4827a11fa0aa73e085f05785ec5/jetified-annotations-13.0.jar:/home/theapache64/Android/Sdk/platforms/android-28/android.jar" />
+          <option name="classpath" value="$MODULE_DIR$/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/5af502e31f7589c05168a09ef9ae4099/jetified-kotlin-stdlib-jdk7-1.3.50.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/c63908f47f94c7c8824d38f6dcf2b8c4/jetified-kotlin-stdlib-1.3.50.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/0b5c36f294bce1ce22b80d94b0ab96a2/jetified-kotlin-stdlib-common-1.3.50.jar:/home/theapache64/.gradle/caches/transforms-2/files-2.1/53b9be4c676fd1e4bfcbcef5b4f448d4/jetified-annotations-13.0.jar:/home/theapache64/Android/Sdk/platforms/android-28/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="logger_debug" />
