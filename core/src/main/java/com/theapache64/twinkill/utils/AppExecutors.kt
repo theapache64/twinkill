@@ -31,6 +31,7 @@ import javax.inject.Singleton
  * Grouping tasks like this avoids the effects of task starvation (e.g. disk reads don't wait behind
  * webservice requests).
  */
+@Deprecated("Use coroutines")
 @Singleton
 open class AppExecutors(
     private val diskIO: Executor,

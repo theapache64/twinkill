@@ -25,17 +25,18 @@ class FlowResourceCallAdapter<R>(
         // Firing loading resource
         emit(Resource.loading())
 
+        var respCode: Int = -1
         try {
             val resp = call.awaitResponse()
-
+            respCode = resp.code()
             if (resp.isSuccessful) {
                 emit(Resource.create(resp, isNeedDeepCheck))
             } else {
-                emit(Resource.create<R>(Throwable(resp.message())))
+                emit(Resource.create<R>(Throwable(resp.message()), respCode))
             }
         } catch (e: Throwable) {
             if (isSelfExceptionHandling) {
-                emit(Resource.create<R>(e))
+                emit(Resource.create<R>(e, respCode))
             } else {
                 throw e
             }

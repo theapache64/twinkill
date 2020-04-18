@@ -39,7 +39,7 @@ class ResourceCallAdapter<R>(
 
                         override fun onFailure(call: Call<R>, throwable: Throwable) {
                             throwable.printStackTrace()
-                            postValue(Resource.create(throwable))
+                            postValue(Resource.create(throwable, -1))
                         }
                     })
                 }

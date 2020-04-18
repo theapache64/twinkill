@@ -64,7 +64,7 @@ abstract class NetworkBoundFlowResource<DB, REMOTE> {
 
                         Resource.Status.ERROR -> {
                             mistake("Remote met with an error")
-                            emit(Resource.error(response.message!!))
+                            emit(Resource.error(response.message!!, response.statusCode))
                         }
                     }
                 }
@@ -81,7 +81,7 @@ abstract class NetworkBoundFlowResource<DB, REMOTE> {
         info("Sending local data to UI")
         emitAll(fetchFromLocal().map { dbData ->
             info("Sending local...")
-            Resource.success(dbData)
+            Resource.success(dbData, -1)
         })
     }
 }

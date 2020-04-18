@@ -31,6 +31,7 @@ import com.theapache64.twinkill.utils.AppExecutors
  * @param <ResultType>
  * @param <RequestType>
 </RequestType></ResultType> */
+@Deprecated("Use NetworkBoundFlowResource")
 abstract class NetworkBoundResource<ResultType, RequestType>
 @MainThread constructor(private val appExecutors: AppExecutors) {
 
@@ -51,7 +52,12 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                 } else {
                     appExecutors.mainThread().execute {
                         result.addSource(dbSource) { newData ->
-                            setValue(com.theapache64.twinkill.network.utils.Resource.success(newData))
+                            setValue(
+                                com.theapache64.twinkill.network.utils.Resource.success(
+                                    newData,
+                                    -1
+                                )
+                            )
                         }
                     }
                 }
@@ -86,7 +92,8 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                             result.addSource(loadFromDb()) { newData ->
                                 setValue(
                                     com.theapache64.twinkill.network.utils.Resource.success(
-                                        newData
+                                        newData,
+                                        -1
                                     )
                                 )
                             }
@@ -97,7 +104,12 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                     appExecutors.mainThread().execute {
                         // reload from disk whatever we had
                         result.addSource(loadFromDb()) { newData ->
-                            setValue(com.theapache64.twinkill.network.utils.Resource.success(newData))
+                            setValue(
+                                com.theapache64.twinkill.network.utils.Resource.success(
+                                    newData,
+                                    -1
+                                )
+                            )
                         }
                     }
                 }
@@ -107,6 +119,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                         setValue(
                             com.theapache64.twinkill.network.utils.Resource.error(
                                 response.errorMessage,
+                                -1,
                                 newData
                             )
                         )
