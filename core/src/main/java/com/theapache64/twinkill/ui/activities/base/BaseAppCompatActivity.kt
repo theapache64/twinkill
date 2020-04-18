@@ -29,7 +29,11 @@ open class BaseAppCompatActivity : AppCompatActivity() {
     /**
      * Returns a confirm dialog with two button 'YES' and 'CANCEL'.
      */
-    fun getConfirmDialog(@StringRes title: Int, @StringRes message: Int, onYes: () -> Unit): AlertDialog {
+    fun getConfirmDialog(
+        @StringRes title: Int,
+        @StringRes message: Int,
+        onYes: () -> Unit
+    ): AlertDialog {
         return AlertDialog.Builder(this)
             .setTitle(title)
             .setMessage(message)

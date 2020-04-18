@@ -1,28 +1,28 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'twinkill_network'
+    bintrayRepo = "maven"
+    bintrayName = "twinkill_network"
 
-    publishedGroupId = 'com.theapache64.twinkill'
-    libraryName = 'network'
-    artifact = 'network'
+    publishedGroupId = "com.theapache64.twinkill"
+    libraryName = "network"
+    artifact = "network"
 
-    libraryDescription = 'Network module for TwinKill'
+    libraryDescription = "Network module for TwinKill"
 
-    siteUrl = 'https://github.com/theapache64/twinkill'
-    gitUrl = 'https://github.com/theapache64/twinkill.git'
+    siteUrl = "https://github.com/theapache64/twinkill"
+    gitUrl = "https://github.com/theapache64/twinkill.git"
 
     libraryVersion = twinkill_version_name
 
-    developerId = 'theapache64'
-    developerName = 'theapache64'
-    developerEmail = 'theapache64@gmail.com'
+    developerId = "theapache64"
+    developerName = "theapache64"
+    developerEmail = "theapache64@gmail.com"
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    licenseName = "The Apache Software License, Version 2.0"
+    licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
     allLicenses = ["Apache-2.0"]
 }
 
@@ -42,40 +42,41 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.60"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     // Moshi
-    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_kotlin_version"
 
     // Dagger
-    implementation "com.google.dagger:dagger:2.24"
-    kapt "com.google.dagger:dagger-compiler:2.24"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.6.1'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_moshi_converter"
 
-
-    implementation project(path: ':core')
-    implementation project(path: ':logger')
+    implementation project(path: ":core")
+    implementation project(path: ":logger")
 }
 repositories {
     mavenCentral()
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle"
+apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle"

@@ -12,7 +12,12 @@ object DateUtils {
     /**
      * Sample  : Tuesday July 24, 2012
      */
-    private val FORMAT_DAY_MONTH_DATE_YEAR by lazy { SimpleDateFormat("EEEE MMMM dd, yyyy", Locale.US) }
+    private val FORMAT_DAY_MONTH_DATE_YEAR by lazy {
+        SimpleDateFormat(
+            "EEEE MMMM dd, yyyy",
+            Locale.US
+        )
+    }
 
 
     /**

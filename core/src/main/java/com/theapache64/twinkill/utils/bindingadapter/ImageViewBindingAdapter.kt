@@ -1,4 +1,4 @@
-package com.tp.theah64.orchidexample.ui.adapters.bindingadapters
+package com.theapache64.twinkill.utils.bindingadapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

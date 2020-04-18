@@ -2,12 +2,10 @@ package com.theapache64.twinkill.network.di.modules
 
 import com.squareup.moshi.Moshi
 import com.theapache64.twinkill.TwinKill
-import com.theapache64.twinkill.network.utils.retrofit.adapters.resourcedataadapter.ResourceCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton

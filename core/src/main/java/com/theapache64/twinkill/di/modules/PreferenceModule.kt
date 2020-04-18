@@ -3,7 +3,6 @@ package com.theapache64.twinkill.di.modules
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.theapache64.twinkill.di.modules.ContextModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

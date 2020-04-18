@@ -1,7 +1,5 @@
 package com.theapache64.twinkill.network.utils
 
-import com.squareup.moshi.*
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.theapache64.twinkill.network.data.remote.base.BaseApiResponse
 import org.json.JSONObject
 import retrofit2.Response

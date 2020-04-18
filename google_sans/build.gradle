@@ -1,28 +1,28 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'twinkill_google_sans'
+    bintrayRepo = "maven"
+    bintrayName = "twinkill_google_sans"
 
-    publishedGroupId = 'com.theapache64.twinkill'
-    libraryName = 'google_sans'
-    artifact = 'google_sans'
+    publishedGroupId = "com.theapache64.twinkill"
+    libraryName = "google_sans"
+    artifact = "google_sans"
 
-    libraryDescription = 'Google sans fonts for TwinKill'
+    libraryDescription = "Google sans fonts for TwinKill"
 
-    siteUrl = 'https://github.com/theapache64/twinkill'
-    gitUrl = 'https://github.com/theapache64/twinkill.git'
+    siteUrl = "https://github.com/theapache64/twinkill"
+    gitUrl = "https://github.com/theapache64/twinkill.git"
 
     libraryVersion = twinkill_version_name
 
-    developerId = 'theapache64'
-    developerName = 'theapache64'
-    developerEmail = 'theapache64@gmail.com'
+    developerId = "theapache64"
+    developerName = "theapache64"
+    developerEmail = "theapache64@gmail.com"
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    licenseName = "The Apache Software License, Version 2.0"
+    licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
     allLicenses = ["Apache-2.0"]
 }
 
@@ -43,26 +43,20 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
-
-    implementation project(path: ':core')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(path: ":core")
 }
 repositories {
     mavenCentral()
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle"
+apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle"

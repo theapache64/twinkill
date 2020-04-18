@@ -13,7 +13,10 @@ import java.util.concurrent.atomic.AtomicBoolean
  * To convert retrofit response to LiveData<Resource<T>>.
  * Inspired from LiveDataCallAdapterFactory
  */
-class ResourceCallAdapter<R>(private val responseType: Type, private val isNeedDeepCheck: Boolean = false) :
+class ResourceCallAdapter<R>(
+    private val responseType: Type,
+    private val isNeedDeepCheck: Boolean = false
+) :
     CallAdapter<R, LiveData<Resource<R>>> {
 
     override fun responseType() = responseType

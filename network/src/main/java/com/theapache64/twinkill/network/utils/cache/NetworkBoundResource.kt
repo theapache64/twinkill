@@ -20,7 +20,7 @@ import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.theapache64.twinkill.utils.*
+import com.theapache64.twinkill.utils.AppExecutors
 
 /**
  * A generic class that can provide a resource backed by both the sqlite database and the network.
@@ -34,7 +34,8 @@ import com.theapache64.twinkill.utils.*
 abstract class NetworkBoundResource<ResultType, RequestType>
 @MainThread constructor(private val appExecutors: AppExecutors) {
 
-    private val result = MediatorLiveData<com.theapache64.twinkill.network.utils.Resource<ResultType>>()
+    private val result =
+        MediatorLiveData<com.theapache64.twinkill.network.utils.Resource<ResultType>>()
 
     init {
         result.value = com.theapache64.twinkill.network.utils.Resource.loading(null)
@@ -83,7 +84,11 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.
                             result.addSource(loadFromDb()) { newData ->
-                                setValue(com.theapache64.twinkill.network.utils.Resource.success(newData))
+                                setValue(
+                                    com.theapache64.twinkill.network.utils.Resource.success(
+                                        newData
+                                    )
+                                )
                             }
                         }
                     }
@@ -99,7 +104,12 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                 is com.theapache64.twinkill.network.utils.ApiErrorResponse -> {
                     onFetchFailed()
                     result.addSource(dbSource) { newData ->
-                        setValue(com.theapache64.twinkill.network.utils.Resource.error(response.errorMessage, newData))
+                        setValue(
+                            com.theapache64.twinkill.network.utils.Resource.error(
+                                response.errorMessage,
+                                newData
+                            )
+                        )
                     }
                 }
             }
@@ -108,10 +118,12 @@ abstract class NetworkBoundResource<ResultType, RequestType>
 
     protected open fun onFetchFailed() {}
 
-    fun asLiveData() = result as LiveData<com.theapache64.twinkill.network.utils.Resource<ResultType>>
+    fun asLiveData() =
+        result as LiveData<com.theapache64.twinkill.network.utils.Resource<ResultType>>
 
     @WorkerThread
-    protected open fun processResponse(response: com.theapache64.twinkill.network.utils.ApiSuccessResponse<RequestType>) = response.body
+    protected open fun processResponse(response: com.theapache64.twinkill.network.utils.ApiSuccessResponse<RequestType>) =
+        response.body
 
     @WorkerThread
     protected abstract fun saveCallResult(item: RequestType)
