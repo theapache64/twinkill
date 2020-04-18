@@ -1,4 +1,4 @@
-package com.theapache64.topcorn.utils
+package com.theapache64.twinkill.network.utils.cache
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 /**
  * A super cool utility class to provide controlled data cache-ing
  */
-abstract class NetworkBoundResource<DB, REMOTE> {
+abstract class NetworkBoundFlowResource<DB, REMOTE> {
 
     @MainThread
     abstract fun fetchFromLocal(): Flow<DB>
