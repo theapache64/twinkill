@@ -45,9 +45,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
-    buildFeatures {
-        dataBinding true
-    }
+    dataBinding.enabled true
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -84,7 +82,13 @@ dependencies {
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    // Test
+    implementation "androidx.test.espresso:espresso-core:$espresso_version"
+    //noinspection FragmentGradleConfiguration
+    implementation "androidx.fragment:fragment-testing:1.2.4"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
 }
 
-  apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle"
+apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle"
 apply from: "https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle"
