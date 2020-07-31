@@ -1,6 +1,7 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-kapt"
+apply plugin: 'dagger.hilt.android.plugin'
 
 ext {
     bintrayRepo = "maven"
@@ -54,6 +55,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ["*.jar"], dir: "libs")
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // ConstraintLayout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
@@ -66,11 +68,11 @@ dependencies {
 
     // Design
     implementation "com.google.android.material:material:$material_version"
-
-    // Dagger
-    implementation "com.google.dagger:dagger:$dagger_version"
     api 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Calligraphy
     implementation "io.github.inflationx:calligraphy3:3.1.1"

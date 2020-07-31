@@ -2,17 +2,21 @@ package com.theapache64.twinkill.di.modules
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
-@Module(includes = [ContextModule::class])
-class PreferenceModule {
+@Module
+@InstallIn(ApplicationComponent::class)
+object PreferenceModule {
 
     @Singleton
     @Provides
-    fun providePreference(context: Context): SharedPreferences {
+    fun providePreference(@ApplicationContext context: Context): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
     }
 }

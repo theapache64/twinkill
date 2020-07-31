@@ -7,6 +7,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.theapache64.twinkill.R
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
 @SuppressLint("Registered")

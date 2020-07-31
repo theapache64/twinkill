@@ -4,6 +4,8 @@ import com.squareup.moshi.Moshi
 import com.theapache64.twinkill.TwinKill
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,7 +16,8 @@ import javax.inject.Singleton
  * Basic network module for dagger
  */
 @Module(includes = [MoshiModule::class])
-class BaseNetworkModule(private val baseUrl: String) {
+@InstallIn(ApplicationComponent::class)
+object BaseNetworkModule {
 
 
     // Interceptor
@@ -55,12 +58,13 @@ class BaseNetworkModule(private val baseUrl: String) {
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        moshi: Moshi
+        moshi: Moshi,
+        url : String
     ): Retrofit {
 
 
         val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(this.baseUrl)
+            .baseUrl(url)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
 
