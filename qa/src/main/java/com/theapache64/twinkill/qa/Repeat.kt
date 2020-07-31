@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.test
+package com.theapache64.twinkill.qa
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)

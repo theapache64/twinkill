@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.test
+package com.theapache64.twinkill.qa
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

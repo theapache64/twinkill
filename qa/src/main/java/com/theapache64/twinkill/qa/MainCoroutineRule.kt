@@ -1,5 +1,4 @@
-package com.theapache64.twinkill.test
-
+package com.theapache64.twinkill.qa
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher

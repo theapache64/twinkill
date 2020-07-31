@@ -1,4 +1,4 @@
-package com.theapache64.twinkill.test
+package com.theapache64.twinkill.qa
 
 import org.junit.rules.TestRule
 import org.junit.runner.Description
