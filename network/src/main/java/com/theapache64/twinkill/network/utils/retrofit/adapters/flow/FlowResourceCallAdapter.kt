@@ -1,7 +1,10 @@
 package com.theapache64.twinkill.network.utils.retrofit.adapters.flow
 
-import com.theapache64.twinkill.network.utils.Resource
+import com.theapache64.twinkill.network.utils.retrofit.adapters.flow.Resource.Error
+import com.theapache64.twinkill.network.utils.retrofit.adapters.flow.Resource.Success
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import retrofit2.Call
 import retrofit2.CallAdapter
@@ -14,32 +17,39 @@ import java.lang.reflect.Type
  */
 class FlowResourceCallAdapter<R>(
     private val responseType: Type,
-    private val isNeedDeepCheck: Boolean,
     private val isSelfExceptionHandling: Boolean
 ) : CallAdapter<R, Flow<Resource<R>>> {
 
     override fun responseType() = responseType
 
+    @ExperimentalCoroutinesApi
     override fun adapt(call: Call<R>): Flow<Resource<R>> = flow {
 
         // Firing loading resource
-        emit(Resource.loading())
+        emit(Resource.Loading<R>(null))
 
-        var respCode: Int = -1
-        try {
-            val resp = call.awaitResponse()
-            respCode = resp.code()
-            if (resp.isSuccessful) {
-                emit(Resource.create(resp, isNeedDeepCheck))
-            } else {
-                emit(Resource.create<R>(Throwable(resp.message()), respCode))
+        val resp = call.awaitResponse()
+
+        if (resp.isSuccessful) {
+            resp.body()?.let { data ->
+                // Success
+                emit(Success(null, data))
+            } ?: kotlin.run {
+                // Error
+                emit(Error(resp.code(), "Response can't be null"))
             }
-        } catch (e: Throwable) {
-            if (isSelfExceptionHandling) {
-                emit(Resource.create<R>(e, respCode))
-            } else {
-                throw e
-            }
+        } else {
+            // Error
+            println("Hit!")
+            val errorBody = resp.message()
+            emit(Error(resp.code(), errorBody))
+        }
+
+    }.catch { error: Throwable ->
+        if (isSelfExceptionHandling) {
+            emit(Error(-1, error.message ?: "Something went wrong"))
+        } else {
+            throw error
         }
     }
 }

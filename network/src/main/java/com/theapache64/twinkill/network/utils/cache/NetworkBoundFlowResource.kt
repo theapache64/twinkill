@@ -5,7 +5,7 @@ import androidx.annotation.WorkerThread
 import com.theapache64.twinkill.logger.debug
 import com.theapache64.twinkill.logger.info
 import com.theapache64.twinkill.logger.mistake
-import com.theapache64.twinkill.network.utils.Resource
+import com.theapache64.twinkill.network.utils.retrofit.adapters.flow.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 
@@ -34,7 +34,7 @@ abstract class NetworkBoundFlowResource<DB, REMOTE> {
 
         // sending loading status
         debug("Sending loading...")
-        emit(Resource.loading())
+        emit(Resource.Loading())
 
         val localData = fetchFromLocal().first()
 
@@ -45,14 +45,14 @@ abstract class NetworkBoundFlowResource<DB, REMOTE> {
             // need remote data
             fetchFromRemote()
                 .collect { response ->
-                    when (response.status) {
+                    when (response) {
 
-                        Resource.Status.LOADING -> {
+                        is Resource.Loading -> {
                             debug("Remote is loading")
-                            emit(Resource.loading())
+                            emit(Resource.Loading(null))
                         }
 
-                        Resource.Status.SUCCESS -> {
+                        is Resource.Success -> {
                             info("Remote got data")
                             val data = response.data!!
                             saveRemoteData(data)
@@ -62,9 +62,9 @@ abstract class NetworkBoundFlowResource<DB, REMOTE> {
                         }
 
 
-                        Resource.Status.ERROR -> {
+                        is Resource.Error -> {
                             mistake("Remote met with an error")
-                            emit(Resource.error(response.message!!, response.statusCode))
+                            emit(Resource.Error(response.code, response.message))
                         }
                     }
                 }
@@ -81,7 +81,7 @@ abstract class NetworkBoundFlowResource<DB, REMOTE> {
         info("Sending local data to UI")
         emitAll(fetchFromLocal().map { dbData ->
             info("Sending local...")
-            Resource.success(dbData, -1)
+            Resource.Success(null, dbData)
         })
     }
 }
